@@ -209,8 +209,8 @@ class Taker(object):
         if self.cjamount != 0:
             try:
                 self.my_change_addr = self.wallet.get_internal_addr(self.mixdepth)
-            except:
-                self.taker_info_callback("ABORT", "Failed to get a change address")
+            except Exception as e:
+                self.taker_info_callback("ABORT", "Failed to get a change address, reason: " + repr(e))
                 return False
             #adjust the required amount upwards to anticipate an increase in
             #transaction fees after re-estimation; this is sufficiently conservative
